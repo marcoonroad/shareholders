@@ -7,7 +7,7 @@ base = 2
 #    | _ ->
 #    ^^^^bar
 # the default is 2, which aligns the pattern and the expression
-match_clause = 4
+match_clause = 2
 
 # When nesting expressions on the same line, their indentation are in
 # some cases stacked, so that it remains correct if you close them one

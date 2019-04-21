@@ -30,20 +30,20 @@ val share :
    {e speaking of probabilities} and sort of that, so sometimes it might fail
    if the provided shares can't fill all the gaps.
 
-   @raise UnsafeSharesThreshold Raised when threshold is lower than 50% amount,
+   @raise UnsafeSharesThreshold Raised when [threshold] is lower than 50% amount,
    higher than [amount], lower than 2 or higher than 128.
 
 *)
 
-val recover : commitment:string -> shares:string list -> string
+val recover : checksum:string -> shares:string list -> string
 (**
 
    The operation to be used on the reconstruction phase. Here, the dealer would
-   take a list of secret [shares] and a checksum [commitment] to validate that
+   take a list of secret [shares] and a [checksum] hash to validate that
    the reconstruction passes, that is, there's enough shares to rebuild the
    secret and no share was modified by the shareholders.
 
-   @raise InvalidBase64Data Raised when the shares are under an inconsistent
+   @raise InvalidSharesFormat Raised when the shares are under an inconsistent
    format.
 
    @raise RecoverChecksumMismatch Raised when the recover phase fails.
@@ -69,4 +69,4 @@ exception UnsafeSharesThreshold
    Exception thrown when the shares are under an invalid format.
 
 *)
-exception InvalidBase64Data
+exception InvalidSharesFormat

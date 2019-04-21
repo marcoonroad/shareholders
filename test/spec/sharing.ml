@@ -11,16 +11,10 @@ let _SECRET =
   \  Mas da janela já não entra luz\n"
 
 
-let _SECRET_SIZE = String.length _SECRET
-
 let __shares_validation () =
   let _, shares = Sh.share ~secret:_SECRET ~threshold:10 ~amount:15 in
   let validation share =
-    let decoded = ShEnc.decode share in
-    Alcotest.(check int)
-      "valid share size"
-      (String.length decoded)
-      _SECRET_SIZE
+    Alcotest.(check bool) "valid share format" true @@ Helpers.is_share share
   in
   List.iter ~f:validation shares ;
   Alcotest.(check int) "valid shares size" (List.length shares) 15

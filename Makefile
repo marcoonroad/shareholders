@@ -1,5 +1,8 @@
 dev-deps:
-	opam install ocamlformat odoc --yes
+	opam install ocamlformat odoc merlin bisect_ppx utop ocp-indent --yes
+
+deps:
+	opam install . --deps-only
 
 utop:
 	dune utop lib

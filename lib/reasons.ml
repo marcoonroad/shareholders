@@ -1,5 +1,5 @@
 exception RecoverChecksumMismatch
 
-exception InvalidBase64Data
+exception InvalidSharesFormat
 
 exception UnsafeSharesThreshold

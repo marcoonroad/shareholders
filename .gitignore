@@ -3,3 +3,4 @@ _build
 shareholders.install
 coverage/
 .merlin
+bisect*.out

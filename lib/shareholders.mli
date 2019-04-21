@@ -31,7 +31,7 @@ val share :
    if the provided shares can't fill all the gaps.
 
    @raise UnsafeSharesThreshold Raised when threshold is lower than 50% amount,
-   higher than [amount] or higher than 128.
+   higher than [amount], lower than 2 or higher than 128.
 
 *)
 

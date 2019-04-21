@@ -11,7 +11,10 @@ let __string_of_byte = Helpers.__string_of_byte
 let __unique_random = Entropy.__unique_random
 
 let __validate amount threshold =
-  if amount / 2 <= threshold && threshold <= amount && threshold <= 128
+  if 2 <= threshold
+     && amount / 2 <= threshold
+     && threshold <= amount
+     && threshold <= 128
   then ()
   else raise Reasons.UnsafeSharesThreshold
 

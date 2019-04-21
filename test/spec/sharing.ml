@@ -34,8 +34,12 @@ let __shares_threshold_failures () =
   let procedureB () =
     ignore @@ Sh.share ~secret:_SECRET ~amount:200 ~threshold:150
   in
+  let procedureC () =
+    ignore @@ Sh.share ~secret:_SECRET ~amount:1 ~threshold:1
+  in
   Alcotest.check_raises "threshold lower than 50%" reason procedureA ;
-  Alcotest.check_raises "threshold greater than 128 shares" reason procedureB
+  Alcotest.check_raises "threshold greater than 128 shares" reason procedureB ;
+  Alcotest.check_raises "threshold lower than 2 shares" reason procedureC
 
 
 let suite =

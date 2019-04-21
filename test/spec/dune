@@ -1,0 +1,4 @@
+(test
+ (name spec)
+ (modules spec sharing recovering)
+ (libraries alcotest shareholders core))

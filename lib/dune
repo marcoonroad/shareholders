@@ -1,0 +1,7 @@
+(library
+ (name shareholders)
+ (public_name shareholders)
+ (wrapped true)
+ (libraries core nocrypto nocrypto.unix digestif digestif.c)
+ (preprocess
+  (pps bisect_ppx -conditional -no-comment-parsing)))

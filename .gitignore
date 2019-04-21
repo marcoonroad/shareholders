@@ -1,0 +1,5 @@
+dune-workspace
+_build
+shareholders.install
+coverage/
+.merlin

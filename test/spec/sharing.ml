@@ -36,7 +36,25 @@ let __shares_threshold_failures () =
   Alcotest.check_raises "threshold lower than 2 shares" reason procedureC
 
 
+let __shares_uniqueness () =
+  let secret, amount, threshold = (_SECRET, 10, 5) in
+  let commitmentA, sharesA = Sh.share ~secret ~amount ~threshold in
+  let commitmentB, sharesB = Sh.share ~secret ~amount ~threshold in
+  let sortedA = List.dedup_and_sort ~compare:String.compare sharesA in
+  let sortedB = List.dedup_and_sort ~compare:String.compare sharesB in
+  let lengthA, lengthA' = (List.length sharesA, List.length sortedA) in
+  let lengthB, lengthB' = (List.length sharesB, List.length sortedB) in
+  Alcotest.(check string) "commitments are the same" commitmentA commitmentB ;
+  Alcotest.(check int) "shares are unique within A" lengthA lengthA' ;
+  Alcotest.(check int) "shares are unique within B" lengthB lengthB' ;
+  Alcotest.(check @@ neg @@ list string)
+    "new shares are completely different from older ones"
+    sortedA
+    sortedB
+
+
 let suite =
   [ ("shares validation and format", `Quick, __shares_validation)
   ; ("threshold must be in a safe basis", `Quick, __shares_threshold_failures)
+  ; ("shares are random if generated again", `Quick, __shares_uniqueness)
   ]

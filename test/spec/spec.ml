@@ -7,4 +7,7 @@
 ;;
 Alcotest.run
   "shareholders specification"
-  [ ("secret sharing", Sharing.suite); ("secret recovering", Recovering.suite) ]
+  [ ("secret sharing", Sharing.suite)
+  ; ("secret recovering", Recovering.suite)
+  ; ("secret verification", Verification.suite)
+  ]

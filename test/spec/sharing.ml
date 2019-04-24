@@ -12,12 +12,14 @@ let _SECRET =
 
 
 let __shares_validation () =
-  let _, shares = Sh.share ~secret:_SECRET ~threshold:10 ~amount:15 in
+  let checksum, shares = Sh.share ~secret:_SECRET ~threshold:10 ~amount:15 in
   let validation share =
     Alcotest.(check bool) "valid share format" true @@ Helpers.is_share share
   in
   List.iter ~f:validation shares ;
-  Alcotest.(check int) "valid shares size" (List.length shares) 15
+  Alcotest.(check int) "valid shares size" (List.length shares) 15 ;
+  let valid_checksum = Helpers.is_checksum checksum in
+  Alcotest.(check bool) "valid checksum format" true valid_checksum
 
 
 let __shares_threshold_failures () =

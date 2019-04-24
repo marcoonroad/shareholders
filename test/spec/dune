@@ -1,4 +1,4 @@
 (test
  (name spec)
- (modules spec sharing recovering helpers)
- (libraries alcotest shareholders core re))
+ (modules spec sharing recovering verification helpers)
+ (libraries alcotest shareholders core re hex))

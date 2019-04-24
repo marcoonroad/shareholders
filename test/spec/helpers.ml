@@ -19,9 +19,24 @@ let is_base64 data =
       false
 
 
+let is_header header =
+  let raw_hash = ShEnc.decode header in
+  let hex_hash = Hex.show @@ Hex.of_string raw_hash in
+  is_hash hex_hash
+
+
 let is_share share =
-  match String.split ~on:'\n' share with
+  match String.split ~on:'.' share with
   | [ commitment; encrypted ] ->
-      is_hash commitment && is_base64 encrypted
+      is_header commitment && is_base64 encrypted
+  | _ ->
+      false
+
+
+let is_checksum checksum =
+  match String.split ~on:'.' @@ ShEnc.decode checksum with
+  | [ prefix; data ] ->
+      let hex_hash = Hex.show @@ Hex.of_string @@ ShEnc.decode data in
+      String.length prefix = 1 && is_hash hex_hash
   | _ ->
       false

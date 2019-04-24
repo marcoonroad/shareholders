@@ -10,7 +10,7 @@ TODO
   number of shares and threshold).
 - [ ] Command-line interface.
 - [ ] Security analysis, review and audit of this kind of Secret Sharing scheme.
-- [ ] `Verify` operation which takes the message `secret` and a single `share` to
+- [x] `Verify` operation which takes the message `secret` and a single `share` to
   validate that either the `share` was recovered by the shares or the dealer
   leaked the secret outside this Secret Sharing scheme.
 - [ ] Higher-level encryption using random key. This encryption generates this

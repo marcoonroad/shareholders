@@ -39,7 +39,7 @@ val recover : checksum:string -> shares:string list -> string
 (**
 
    The operation to be used on the reconstruction phase. Here, the dealer would
-   take a list of secret [shares] and a [checksum] hash to validate that
+   take a list of secret [shares] and a [checksum] dealer's key to validate that
    the reconstruction passes, that is, there's enough shares to rebuild the
    secret and no share was modified by the shareholders.
 
@@ -47,6 +47,13 @@ val recover : checksum:string -> shares:string list -> string
    format.
 
    @raise RecoverChecksumMismatch Raised when the recover phase fails.
+
+*)
+
+val verify : secret:string -> share:string -> bool
+(**
+
+   Function to verify that a recovered secret is indeed from this share too.
 
 *)
 

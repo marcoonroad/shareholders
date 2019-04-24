@@ -20,18 +20,24 @@ let __validate_length shares =
   assert valid
 
 
-let __string_get = Helpers.__string_get
+let __string_get ~index string =
+  let position = Helpers.__string_get string ~index:(index * 2) in
+  let byte = Helpers.__string_get string ~index:((index * 2) + 1) in
+  (position, byte)
+
 
 let __string_of_byte = Helpers.__string_of_byte
 
+let __code_of_byte (_, byte) = Char.code byte
+
 let recover shares =
   __validate_length shares ;
-  let secret_size = String.length @@ List.nth_exn shares 0 in
+  let secret_size = (String.length @@ List.nth_exn shares 0) / 2 in
   let __gather index =
     let bytes = List.map ~f:(__string_get ~index) shares in
-    let codes = List.map ~f:Char.code bytes in
+    let codes = List.map ~f:__code_of_byte bytes in
     __string_of_byte @@ __recover_byte codes
   in
   let bytes = List.init ~f:__gather secret_size in
   let secret = List.reduce_exn ~f:( ^ ) bytes in
-  secret
+  try Encoding.decode secret with _ -> ""

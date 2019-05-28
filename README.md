@@ -140,9 +140,10 @@ can be just the hash of the checksum `c`:
 ```
 
 And to avoid shareholders from adding noise in their own shares, we can sign
-their shares in a "HMAC"/keyed-hash style (although I still not using HMAC,
+their shares in a "HMAC"/keyed-hash style (~~although I still not using HMAC,
 I know, some hashes are weak against length-extension attacks, but it's not the
-case for Blake2B - I guess):
+case for Blake2B - I guess~~ **update:** I'm already using Blake2B-HMAC for
+standard compliance of HMAC algorithms):
 
 ```
   Hk = H(Ek) = H(H(c)) = H(H(H(m)))

@@ -19,6 +19,7 @@ let nullchar = Char.of_int_exn 0
 let pad ~basis msg =
   let length = String.length msg in
   let remainder = Int.( % ) length basis in
+  if remainder = 0 then msg else
   let zerofill = String.make (basis - remainder) nullchar in
   msg ^ zerofill
 

@@ -4,4 +4,4 @@
    (:standard -w +42)))
  (release
   (flags
-   (:standard -O3))))
+   (:standard))))
